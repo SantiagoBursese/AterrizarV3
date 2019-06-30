@@ -33,7 +33,7 @@ public class DataDummy {
         UsuarioPaga usuario = new UsuarioPaga("Juan Manuel", "Pardo", 1111111, 350);
         usuario.efectuarCompra(500000);
         AterrizarV2 aterrizar = this.setearAterrizarDummy();
-        efectuarDosCompras(aterrizar,usuario);
+        efectuarTresCompras(aterrizar,usuario);
         reservarUnAsiento(aterrizar,usuario);
         return usuario;
     }
@@ -201,7 +201,7 @@ public class DataDummy {
         aerolinea.reservarAsiento("EC0LAM-12", usuario);
     }
     
-    public static void efectuarDosCompras(AterrizarV2 aterrizar, UsuarioPaga usuario) throws CodigoAsientoException, AsientoReservadoException{
+    public static void efectuarTresCompras(AterrizarV2 aterrizar, UsuarioPaga usuario) throws CodigoAsientoException, AsientoReservadoException{
         Aerolinea aerolinea = aterrizar.getAerolineas().get(0);
         aerolinea.comprarAsiento("EC0344-42", usuario);
         aerolinea.comprarAsiento("EC0344-66", usuario);

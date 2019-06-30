@@ -6,9 +6,7 @@ import java.awt.event.ActionListener;
 import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 import javax.swing.table.DefaultTableModel;
-
 import aterrizarv2.AterrizarV2;
 import aterrizarv2.asientos.Asiento;
 import aterrizarv2.asientos.excepcionesAsiento.CodigoAsientoException;
@@ -17,29 +15,24 @@ import controladorVistas.ControladorTablaComprasReservas;
 
 
 public class ReservasCompras extends javax.swing.JFrame {
-    private AterrizarV2 pagina;
     private ControladorTablaComprasReservas controlador;
+    private AterrizarV2 pagina;
+   
 
-    
-    public ReservasCompras(Usuario usuarioLogeado,AterrizarV2 pagina, String tipoVentana) {
-    	this.pagina = pagina;
-    	this.setTitle("Aterrizar.com");
-        this.setResizable(false);
-        initComponents();
-        LinkedList <Asiento> asientos = controlador.iniciarTabla(usuarioLogeado, tipoVentana);
-        this.setearAsientosEnVista(asientos);
-    }
-
-    public ReservasCompras(Usuario usuario, String ventana) {
+    public ReservasCompras(Usuario usuario, AterrizarV2 pagina,String ventana) {
         this.setTitle("Aterrizar.com");
         this.setResizable(false);
+        this.pagina= pagina;
         initComponents();
-        nombreLabelVentana.setText(ventana + "de :");
-        nombreUsuario.setText(usuario.getNombre());
+        controlador = new ControladorTablaComprasReservas(usuario);
+        nombreLabelVentana.setText(ventana + " de :");
+        nombreUsuario.setText(controlador.nombreUsuario());
+        LinkedList <Asiento> asientos = controlador.iniciarTabla(usuario, ventana);
+        this.setearAsientosEnVista(asientos);
         botonCerrar.addActionListener(e -> cerrarVentana());
     }
     
-    public void setearAsientosEnVista(LinkedList<Asiento> asientosRellenar){
+    private void setearAsientosEnVista(LinkedList<Asiento> asientosRellenar){
         this.eliminarCeldasTabla();
         asientosRellenar.forEach(asiento -> {
             try {
@@ -53,16 +46,6 @@ public class ReservasCompras extends javax.swing.JFrame {
             } catch (CodigoAsientoException ex) {
                 //Nunca va a entrar a este catch en realidad asi que no pasa nada
                 Logger.getLogger(ControladorTablaComprasReservas.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        });
-    }
-  
-    
-    public void agregarFuncionalidadBotonCierra(){
-        botonCerrar.addActionListener(new ActionListener(){
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-               cerrarVentana();
             }
         });
     }
@@ -84,8 +67,6 @@ public class ReservasCompras extends javax.swing.JFrame {
         	tb.removeRow(tb.getRowCount()-1);
         } 
     }
-    
- 
     
     public void rellenarFilaTabla(String fechaSalida, String aerolinea, String codigoVuelo, String nroAsiento, String precio){
         DefaultTableModel modelo = (DefaultTableModel) infoTablaUsuario.getModel();

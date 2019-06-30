@@ -16,45 +16,39 @@ import aterrizarv2.filtrosBusqueda.FiltroFecha;
 import aterrizarv2.filtrosBusqueda.FiltroOrigen;
 import aterrizarv2.usuarios.Usuario;
 import aterrizarv2.vuelos.AsientoVueloFullData;
-import controladorVistas.ActualizadorVistas;
+import controladorVistas.ControladorBuscarAsientos;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
+import viewModel.BuscarAsientoViewModel;
 
 public class BusquedaAsientos extends javax.swing.JFrame {
-	private ActualizadorVistas actualizador;
-	private AterrizarV2 pagina;
+    private BuscarAsientoViewModel modelo;
+    private ControladorBuscarAsientos controlador;
 	 
-    public BusquedaAsientos(Usuario usuarioLogeado, AterrizarV2 pagina, ActualizadorVistas actualizador) {
-        this.setTitle("Aterrizar.com");
-        this.setResizable(false);
-        initComponents();
-        agregarFuncionalidadBotones();
+    public BusquedaAsientos(AterrizarV2 pagina,Usuario usuarioLogeado) {
         this.agregarFuncionalidadBotonBuscar(new ObtieneBusquedas());
         this.agregarFuncionalidadBotonComprar(new CompraAsiento());
         this.agregarFuncionalidadBotonReserva(new ReservaAsiento());
         this.actualizador = actualizador;
     }
 
-    BusquedaAsientos(AterrizarV2 paginaAerolineas, Usuario usuario) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public BusquedaAsientos(BuscarAsientoViewModel buscarAsientoViewModel) {
+        this.setTitle("Aterrizar.com");
+        this.setResizable(false);
+        initComponents();
+        this.modelo= buscarAsientoViewModel;
+        crearController();
+        botonCerrar.addActionListener(e -> cerrarVentana());
     }
     
-    public void agregarFuncionalidadBotones(){
-        agregarFuncionalidadBotonCierra();
+    private void crearController() {
+        controlador = new ControladorBuscarAsientos(modelo);
+        
     }
     
-    public void agregarFuncionalidadBotonCierra(){
-        botonCerrar.addActionListener(new ActionListener(){
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-               cerrarVentana();
-            }
-        });
-    }
     
     public void rellenarConDisponibles(List<AsientoVueloFullData> disponibles){
         disponibles.forEach(asiento -> {
@@ -77,7 +71,8 @@ public class BusquedaAsientos extends javax.swing.JFrame {
         Busqueda busquedaRealizar = new Busqueda(filtroOrigen,filtroDestino,filtroFecha);
         return pagina.asientosCumplenParametro(usuarioBusca, busquedaRealizar, new OrdenPorPrecioDescendente());
     }
-    
+
+
     class CompraAsiento implements ActionListener{
 
         @Override
@@ -466,12 +461,6 @@ public class BusquedaAsientos extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new BusquedaAsientos(null, null, null).setVisible(true);
-            }
-        });
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -489,10 +478,9 @@ public class BusquedaAsientos extends javax.swing.JFrame {
     private javax.swing.JTextField textoFecha;
     private javax.swing.JTextField textoOrigen;
     // End of variables declaration//GEN-END:variables
-	public void display() {
+    public void display() {
         this.setVisible(true);
-        this.setLocation(500, 200);
-		
-	}
+        this.setLocation(500, 200);		
+    }
 }
 

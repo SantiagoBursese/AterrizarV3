@@ -3,12 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/santi/Desktop/aterrizarV2/src/comienzoPrograma/ComienzoPrograma.java</file>
-            <file>file:/C:/Users/santi/Desktop/aterrizarV2/src/controladorVistas/controladorBienvenida.java</file>
-            <file>file:/C:/Users/santi/Desktop/aterrizarV2/src/Vistas/ReservasCompras.java</file>
-            <file>file:/C:/Users/santi/Desktop/aterrizarV2/src/Vistas/Bienvenida.java</file>
-            <file>file:/C:/Users/santi/Desktop/aterrizarV2/src/dataDummy/DataDummy.java</file>
-            <file>file:/C:/Users/santi/Desktop/aterrizarV2/src/controladorVistas/ControladorTablaComprasReservas.java</file>
+            <file>file:/C:/Users/santi/Desktop/aterrizarV3/src/Vistas/BusquedaAsientos.java</file>
+            <file>file:/C:/Users/santi/Desktop/aterrizarV3/src/Vistas/Bienvenida.java</file>
+            <file>file:/C:/Users/santi/Desktop/aterrizarV3/src/viewModel/BuscarAsientoViewModel.java</file>
+            <file>file:/C:/Users/santi/Desktop/aterrizarV3/src/controladorVistas/ControladorBuscarAsientos.java</file>
+            <file>file:/C:/Users/santi/Desktop/aterrizarV3/src/dataDummy/DataDummy.java</file>
         </group>
     </open-files>
 </project-private>

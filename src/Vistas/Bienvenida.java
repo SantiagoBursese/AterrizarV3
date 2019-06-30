@@ -1,15 +1,18 @@
 package Vistas;
 
+import aterrizarv2.AterrizarV2;
 import java.awt.event.ActionListener;
 import aterrizarv2.asientos.excepcionesAsiento.AsientoReservadoException;
 import aterrizarv2.usuarios.DniInvalidoException;
 import controladorVistas.controladorBienvenida;
 import dataDummy.DataDummy;
+import viewModel.BuscarAsientoViewModel;
 
 
 public class Bienvenida extends javax.swing.JFrame {
     private controladorBienvenida controler;
-
+    private AterrizarV2 pagina = this.getAerolinea(); 
+   
     public Bienvenida(){
         this.setTitle("Aterrizar.com");
         this.setResizable(false);
@@ -24,22 +27,26 @@ public class Bienvenida extends javax.swing.JFrame {
         
     }
 
-    private void verAsientos() {
-        DataDummy dummy = new DataDummy();
-        BusquedaAsientos busqueda = new BusquedaAsientos(dummy.paginaAerolineas(),controler.getUsuario());
+    public void verAsientos() {
+        BusquedaAsientos busqueda = new BusquedaAsientos(new BuscarAsientoViewModel (pagina,controler.getUsuario()));
         busqueda.display();
     }
 
-    private void verReservas() {
-        ReservasCompras reservas = new ReservasCompras(controler.getUsuario(), "Reservas");
+    public void verReservas() {
+        ReservasCompras reservas = new ReservasCompras(controler.getUsuario(),pagina, "Reservas");
         reservas.display();
     }
 
-    private void verCompras() {
-        ReservasCompras compras = new ReservasCompras(controler.getUsuario(), "Compras");
+    public void verCompras() {
+        ReservasCompras compras = new ReservasCompras(controler.getUsuario(),pagina, "Compras");
         compras.display();
     }
 
+    public AterrizarV2 getAerolinea(){
+        DataDummy dummy = new DataDummy ();
+        pagina = dummy.paginaAerolineas();
+        return pagina;
+    }
     
     public void agregarAbridorCompras(ActionListener eventoBotonCompras){
         this.botonCompra.addActionListener(eventoBotonCompras);
