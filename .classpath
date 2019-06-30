@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="test"/>
+	<classpathentry kind="lib" path="C:/Users/SB_E90405/AppData/Local/Microsoft/Windows/INetCache/IE/LF6OP0ZI/hamcrest-all-1.3[1].jar"/>
+	<classpathentry kind="lib" path="C:/Users/SB_E90405/AppData/Local/Microsoft/Windows/INetCache/IE/UWB6JL96/mockito-core-2.24.0[1].jar"/>
+	<classpathentry kind="lib" path="C:/Users/SB_E90405/AppData/Local/Microsoft/Windows/INetCache/IE/79ZDW9K9/byte-buddy-agent-1.9.7[1].jar"/>
+	<classpathentry kind="lib" path="C:/Users/SB_E90405/AppData/Local/Microsoft/Windows/INetCache/IE/LF6OP0ZI/byte-buddy-1.9.7[1].jar"/>
+	<classpathentry kind="lib" path="C:/Users/SB_E90405/AppData/Local/Microsoft/Windows/INetCache/IE/F0V0NGXK/objenesis-2.6[1].jar"/>
+	<classpathentry kind="output" path="build/classes"/>
+</classpath>
